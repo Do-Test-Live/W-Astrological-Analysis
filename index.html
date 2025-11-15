@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrology Calculator - Rashi & Charts</title>
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">🔮 Astro-Numerology</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Astrology</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="numerology.html">Numerology</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section bg-gradient text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4 mb-3">Astrology Calculator</h1>
+        <p class="lead">Discover your Rashi, view your birth chart, and get today's forecast</p>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container my-5">
+    <div class="row">
+        <!-- Input Form -->
+        <div class="col-lg-5 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Enter Birth Details</h5>
+                </div>
+                <div class="card-body">
+                    <form id="astrologyForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" required placeholder="Enter your name">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="birthDate" class="form-label">Birth Date</label>
+                            <input type="date" class="form-control" id="birthDate" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="birthTime" class="form-label">Birth Time</label>
+                            <input type="time" class="form-control" id="birthTime" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="birthLocation" class="form-label">Birth Location</label>
+                            <input type="text" class="form-control" id="birthLocation" required placeholder="City, Country">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="latitude" class="form-label">Latitude (Optional)</label>
+                                <input type="number" class="form-control" id="latitude" step="0.0001" placeholder="e.g., 28.6139">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="longitude" class="form-label">Longitude (Optional)</label>
+                                <input type="number" class="form-control" id="longitude" step="0.0001" placeholder="e.g., 77.2090">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Calculate Rashi</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="col-lg-7">
+            <div id="resultsSection" class="d-none">
+                <!-- Rashi Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Your Rashi (Moon Sign)</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <span id="rashiSymbol" class="rashi-symbol">♈</span>
+                            <h3 id="rashiName" class="mt-2">Aries</h3>
+                        </div>
+                        <div id="rashiDetails" class="small text-muted"></div>
+                    </div>
+                </div>
+
+                <!-- Today's Rashifol -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">Today's Rashifol</h5>
+                    </div>
+                    <div class="card-body">
+                        <p id="todayRashifol">Loading your daily forecast...</p>
+                    </div>
+                </div>
+
+                <!-- Transit Summary -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">Current Transit</h5>
+                    </div>
+                    <div class="card-body">
+                        <p id="transitSummary">Analyzing planetary positions...</p>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-secondary text-white">
+                                <h6 class="mb-0">D1 Chart (Rashi)</h6>
+                            </div>
+                            <div class="card-body p-0">
+                                <div id="d1Chart" class="chart-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-secondary text-white">
+                                <h6 class="mb-0">D9 Chart (Navamsa)</h6>
+                            </div>
+                            <div class="card-body p-0">
+                                <div id="d9Chart" class="chart-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholder Message -->
+            <div id="placeholderMessage" class="text-center text-muted mt-5">
+                <img src="assets/img/placeholder.png" alt="Astrology" class="img-fluid mb-3" style="max-width: 200px; opacity: 0.3;" onerror="this.style.display='none'">
+                <h5>Enter your birth details to see your astrology reading</h5>
+                <p>We'll calculate your Rashi, generate your charts, and provide today's forecast</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Astro-Numerology Calculator. For entertainment purposes only.</p>
+    </div>
+</footer>
+
+<!-- Bootstrap 5.3 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+<script src="assets/js/common.js"></script>
+<script src="assets/js/astrology.js"></script>
+</body>
+</html>

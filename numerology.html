@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numerology Calculator - Life Path & Destiny</title>
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">🔮 Astro-Numerology</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Astrology</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="numerology.html">Numerology</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section bg-gradient text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4 mb-3">Numerology Calculator</h1>
+        <p class="lead">Discover your Life Path, Destiny, and Soul Urge numbers</p>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container my-5">
+    <div class="row">
+        <!-- Input Form -->
+        <div class="col-lg-5 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Enter Your Details</h5>
+                </div>
+                <div class="card-body">
+                    <form id="numerologyForm">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" required placeholder="Enter your full name">
+                            <small class="form-text text-muted">Use your birth name for accurate results</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="dateOfBirth" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Calculate Numbers</button>
+                    </form>
+
+                    <!-- Info Box -->
+                    <div class="alert alert-info mt-4" role="alert">
+                        <strong>About Numerology:</strong>
+                        <ul class="mb-0 mt-2 small">
+                            <li><strong>Life Path:</strong> Your life's purpose and journey</li>
+                            <li><strong>Expression:</strong> Your natural talents and abilities</li>
+                            <li><strong>Soul Urge:</strong> Your inner desires and motivations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="col-lg-7">
+            <div id="numerologyResults" class="d-none">
+                <!-- Life Path Number -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Life Path Number</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <div class="number-circle bg-success">
+                                <span id="lifePathNumber" class="number-display">1</span>
+                            </div>
+                        </div>
+                        <p id="lifePathMeaning" class="text-muted"></p>
+                        <div class="small text-muted">
+                            <strong>Calculation:</strong> <span id="lifePathCalc"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expression Number -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">Expression/Destiny Number</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <div class="number-circle bg-info">
+                                <span id="expressionNumber" class="number-display">5</span>
+                            </div>
+                        </div>
+                        <p id="expressionMeaning" class="text-muted"></p>
+                        <div class="small text-muted">
+                            <strong>Calculation:</strong> <span id="expressionCalc"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soul Urge Number -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">Soul Urge Number</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <div class="number-circle bg-warning">
+                                <span id="soulUrgeNumber" class="number-display">7</span>
+                            </div>
+                        </div>
+                        <p id="soulUrgeMeaning" class="text-muted"></p>
+                        <div class="small text-muted">
+                            <strong>Calculation:</strong> <span id="soulUrgeCalc"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Card -->
+                <div class="card shadow-sm border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Your Numerology Profile</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <h6 class="text-muted small">LIFE PATH</h6>
+                                <h3 id="summaryLifePath" class="text-success">-</h3>
+                            </div>
+                            <div class="col-4">
+                                <h6 class="text-muted small">EXPRESSION</h6>
+                                <h3 id="summaryExpression" class="text-info">-</h3>
+                            </div>
+                            <div class="col-4">
+                                <h6 class="text-muted small">SOUL URGE</h6>
+                                <h3 id="summarySoulUrge" class="text-warning">-</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholder Message -->
+            <div id="numerologyPlaceholder" class="text-center text-muted mt-5">
+                <img src="assets/img/placeholder.png" alt="Numerology" class="img-fluid mb-3" style="max-width: 200px; opacity: 0.3;" onerror="this.style.display='none'">
+                <h5>Enter your details to discover your numbers</h5>
+                <p>We'll calculate your Life Path, Expression, and Soul Urge numbers using the Pythagorean system</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Astro-Numerology Calculator. For entertainment purposes only.</p>
+    </div>
+</footer>
+
+<!-- Bootstrap 5.3 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+<script src="assets/js/common.js"></script>
+<script src="assets/js/numerology.js"></script>
+</body>
+</html>
